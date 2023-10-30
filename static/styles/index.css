@@ -18,18 +18,23 @@ body {
 }
 
 button {
-  border-radius: 0.5rem;
+  border-radius: 8px;
   background: #6692FF;
   border-width: 0;
   color: white;
   padding: 0.7rem 0.5rem;
+  transition: ease-in 0.1s;
+}
+button:hover {
+  background: #80a5ff;
 }
 
 #sidebar {
   position: absolute;
-  width: 25rem;
+  width: 20rem;
   height: 100%;
   background-color: white;
+  padding: 0 2.5rem;
 }
 
 #profile-info {
@@ -66,11 +71,10 @@ button {
   align-items: stretch;
   gap: 0.7rem;
   width: 20rem;
-  padding: 0 2.5rem;
   margin-top: 3rem;
 }
 #profile-buttons button {
-  border-radius: 1rem;
+  border-radius: 16px;
   padding: 1rem 1rem;
   flex: 1;
   text-align: start;
@@ -81,13 +85,44 @@ button {
   background: #E0E6F5;
   color: black;
 }
+#profile-buttons button:nth-child(1):hover {
+  background: #d2dced;
+}
 #profile-buttons button:nth-child(1) i {
   color: #828282;
 }
 
-#timetable {
-  border-radius: 1.5625rem;
+.card {
+  border-radius: 25px;
   background: #E0E6F5;
+  width: 20rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+.card hr {
+  display: block;
+  width: 20px;
+  height: 4px;
+  border-width: 0;
+  top: 24px;
+  margin-left: 30px;
+  background: #96AFED;
+}
+.card p {
+  margin-top: 4px;
+  margin-bottom: 1rem;
+  margin-left: 30px;
+  text-align: start;
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.card img {
+  width: 18rem;
+  border-radius: 25px;
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=index.css.map */
