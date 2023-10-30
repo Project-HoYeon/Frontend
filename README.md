@@ -1,4 +1,4 @@
-# <h1 align="center">HoYeon-Frontend</h1>
+# <h1 align="center"><img src="./static/assets/logo_round.svg" style="width:100px;height:100px;"/><br>HoYeon-Frontend</h1>
 
 <p align="center">
 기말과제 :)
