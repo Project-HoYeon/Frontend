@@ -1,0 +1,93 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
+@font-face {
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  font-family: "NanumSquareNeo-Variable", serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #C5C9DB;
+}
+
+button {
+  border-radius: 0.5rem;
+  background: #6692FF;
+  border-width: 0;
+  color: white;
+  padding: 0.7rem 0.5rem;
+}
+
+#sidebar {
+  position: absolute;
+  width: 25rem;
+  height: 100%;
+  background-color: white;
+}
+
+#profile-info {
+  align-content: center;
+  text-align: center;
+  margin-top: 5rem;
+}
+#profile-info img {
+  width: 5.5rem;
+  height: 5.5rem;
+  flex-shrink: 0;
+  border-radius: 1.625rem;
+  border: 4px solid #6692FF;
+}
+#profile-info .stdnumber {
+  color: #666;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+#profile-info .name {
+  color: #000;
+  text-align: center;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+#profile-buttons {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.7rem;
+  width: 20rem;
+  padding: 0 2.5rem;
+  margin-top: 3rem;
+}
+#profile-buttons button {
+  border-radius: 1rem;
+  padding: 1rem 1rem;
+  flex: 1;
+  text-align: start;
+  font-size: 1rem;
+}
+#profile-buttons button:nth-child(1) {
+  border: 3px solid rgba(75, 123, 242, 0.08);
+  background: #E0E6F5;
+  color: black;
+}
+#profile-buttons button:nth-child(1) i {
+  color: #828282;
+}
+
+#timetable {
+  border-radius: 1.5625rem;
+  background: #E0E6F5;
+}
+
+/*# sourceMappingURL=index.css.map */
