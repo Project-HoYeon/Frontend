@@ -13,3 +13,26 @@
 <p align="center">
 무루무루..
 </p>
+
+### 설정
+레포 clone 후
+```shell
+pnpm install
+pnpm run dev -- --open
+```
+
+### 수정
+주요 Svelte 파일들은 `src/routes` 폴더 아래, Stylesheet 은 `static/styles` 아래 위치
++ 레이아웃 파일 : `src/routes`
++ Svelte 컴포넌트 : `src/components`
++ SCSS 파일 : `static/styles`
++ 이미지/에셋 : `static/assets`
+
+***`app.html`은 웬만해선 수정하지 말 것...***
+
+### 커밋
+pr 날리셔도 되고 Conflict 없으면 `main` 브랜치에 직접 커밋 때리셔도 됩니다
+
+### 팁
++ scss 파일의 수정사항은 자동 적용되지 않으니 페이지 새로고침 해야 합니다.
++ 기본적으로 scss는 빌드하여 사용해야 하나, `WebStorm` IDE 사용시 자동 빌드가 가능합니다.
