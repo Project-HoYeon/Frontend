@@ -6,6 +6,9 @@
     function onTimetableToggle() {
         isTimetableOpen = !isTimetableOpen;
     }
+    function goToLogin() {
+        window.location.href = '/login';
+    }
 </script>
 <section>
     <div id="sidebar">
@@ -19,9 +22,9 @@
                 <i class="fa-regular fa-bookmark"></i><br>
                 내 정보
             </button>
-            <button>
+            <button on:click={goToLogin}>
                 <i class="fa-solid fa-right-from-bracket"></i><br>
-                로그아웃
+                로그인
             </button>
         </div>
         <div id="timetable">
