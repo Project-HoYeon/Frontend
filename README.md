@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-무루무루..
+<a href="https://www.figma.com/file/lYPenodUeKBqBn0nFHs6Ch/Untitled?type=design&node-id=0-1&mode=design">디자인 Figma 이동 링크</a>
 </p>
 
 ### 설정
