@@ -24,7 +24,7 @@
             </button>
             <button on:click={goToLogin}>
                 <i class="fa-solid fa-right-from-bracket"></i><br>
-                로그인
+                로그아웃
             </button>
         </div>
         <div id="timetable">
