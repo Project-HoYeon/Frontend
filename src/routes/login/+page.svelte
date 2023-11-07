@@ -7,7 +7,7 @@
     }
 </script>
 <section>
-    <img src="assets/login_bg_mask.svg" alt="background mask">
+    <img id="bg-mask" src="assets/login_bg_mask.svg" alt="background mask">
     <section class="login_container">
         <hr>
         <p id="title">로그인</p>
@@ -28,10 +28,26 @@
                 <i class="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;로그인
             </button>
         </form>
+        <div id="reg-wrapper">
+            <hr><a>회원가입</a><hr>
+        </div>
+        <div id="forgot-pw-wrapper">
+            <a>비번을 몰?루</a>
+        </div>
     </section>
 </section>
 <style lang="scss">
   @import "static/styles/common.scss";
+  @import "static/styles/mixins.scss";
+
+  #bg-mask {
+
+    height: 100%;
+
+    @include under-width(1150px) {
+      margin-left: -6rem;
+    }
+  }
 
   p {
     font-style: normal;
@@ -52,7 +68,11 @@
     top: 50%;
     transform: translateY(-50%);
     width: 25rem;
-    height: 30rem;
+    height: auto;
+
+    @include under-width(1150px) {
+      right: 10%;
+    }
 
     hr {
       display: block;
@@ -104,32 +124,33 @@
       #pw-wrapper {
         width: 100%;
         height: 3.3rem;
-        border-radius: 1.65rem;
-        border: 2px solid #9DA8B2;
-        background: #3b4859;
         margin-top: 3px;
         font-size: 1.1rem;
         font-weight: bold;
         box-sizing: border-box;
+        display: flex;
+        overflow: hidden;
 
         input[type=text], input[type=password] {
-          width: 90%;
-          height: 3.1rem;
+          width: 100%;
+          height: 3.3rem;
           border-radius: 1.65rem;
-          border: none;
+          border: 2px solid #9DA8B2;
           background: #FFF;
           margin-top: 0;
           font-size: 1.1rem;
           font-weight: bold;
           box-sizing: border-box;
         }
-      }
 
-      #pw-toggle {
-        font-family: "Font Awesome 6 Free", serif;
-        font-size: 1.2rem;
-        color: #ffffff;
-        cursor: pointer;
+        #pw-toggle {
+          font-family: "Font Awesome 6 Free", serif;
+          font-size: 1.2rem;
+          color: #9DA8B2;
+          cursor: pointer;
+          margin-left: -2.5rem;
+          margin-top: 1rem;
+        }
       }
 
       button {
@@ -147,6 +168,38 @@
         i {
           font-family: "Font Awesome 6 Free", serif;
         }
+      }
+    }
+
+    #reg-wrapper {
+      width: 100%;
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      color: #9DA8B2;
+
+      hr {
+        width: 150px;
+        height: 2px;
+        background: #9DA8B2;
+        margin: auto 0;
+      }
+
+      a {
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    #forgot-pw-wrapper {
+      width: 100%;
+      text-align: center;
+      margin-top: 2rem;
+
+      a {
+        color: #6692FF;
+        cursor: pointer;
       }
     }
   }
