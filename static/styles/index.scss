@@ -89,38 +89,75 @@ button {
   }
 }
 
-.card {
-  border-radius: $corner-radius;
-  background: #E0E6F5;
-  width: 20rem;
-  margin-top: 2rem;
-  text-align: center;
-
-  hr {
-    display: block;
-    width: 20px;
-    height: 4px;
-    border-width: 0;
-    top: 24px;
-    margin-left: 30px;
-    background: #96AFED;
-  }
-
-  p {
-    margin-top: 4px;
-    margin-bottom: 1rem;
-    margin-left: 30px;
-    text-align: start;
-    color: #000;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-
-  img {
-    width: 18rem;
+#timetable {
+  .card {
     border-radius: $corner-radius;
-    margin-bottom: 1rem;
+    background: #E0E6F5;
+    width: 20rem;
+    margin-top: 2rem;
+    text-align: center;
+
+    hr {
+      display: block;
+      width: 20px;
+      height: 4px;
+      border-width: 0;
+      top: 24px;
+      margin-left: 30px;
+      background: #96AFED;
+    }
+
+    p {
+      margin-top: 4px;
+      margin-bottom: 1rem;
+      margin-left: 30px;
+      text-align: start;
+      color: #000;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    img {
+      width: 18rem;
+      border-radius: $corner-radius;
+      margin-bottom: 1rem;
+    }
+  }
+
+  #next-class {
+    margin-top: 1.5rem;
+    padding: 16px;
+    border-radius: $corner-radius;
+    background: #E0E6F5;
+    max-width: 20rem;
+    display: flex;
+    text-align: start;
+
+    i {
+      font-size: 22px;
+      margin: auto 6px;
+    }
+
+    div {
+      margin-left: 10px;
+
+      p#class-name {
+        color: #252525;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+
+      p#class-time {
+        color: #565656;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
   }
 }
