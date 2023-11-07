@@ -7,7 +7,7 @@
     }
 </script>
 <section>
-    <img id="bg-mask" src="assets/login_bg_mask.svg" alt="background mask">
+    <img id="bg-mask" src="assets/login_bg_mask.png" alt="background mask">
     <section class="login_container">
         <hr>
         <p id="title">로그인</p>
