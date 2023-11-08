@@ -87,14 +87,14 @@ button:hover {
   color: #828282;
 }
 
-.card {
+#timetable .card {
   border-radius: 25px;
   background: #E0E6F5;
   width: 20rem;
   margin-top: 2rem;
   text-align: center;
 }
-.card hr {
+#timetable .card hr {
   display: block;
   width: 20px;
   height: 4px;
@@ -103,7 +103,7 @@ button:hover {
   margin-left: 30px;
   background: #96AFED;
 }
-.card p {
+#timetable .card p {
   margin-top: 4px;
   margin-bottom: 1rem;
   margin-left: 30px;
@@ -114,10 +114,40 @@ button:hover {
   font-weight: 400;
   line-height: normal;
 }
-.card img {
+#timetable .card img {
   width: 18rem;
   border-radius: 25px;
   margin-bottom: 1rem;
+}
+#timetable #next-class {
+  margin-top: 1.5rem;
+  padding: 16px;
+  border-radius: 25px;
+  background: #E0E6F5;
+  max-width: 20rem;
+  display: flex;
+  text-align: start;
+}
+#timetable #next-class i {
+  font-size: 22px;
+  margin: auto 6px;
+}
+#timetable #next-class div {
+  margin-left: 10px;
+}
+#timetable #next-class div p#class-name {
+  color: #252525;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+#timetable #next-class div p#class-time {
+  color: #565656;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 /*# sourceMappingURL=index.css.map */
