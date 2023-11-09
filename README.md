@@ -14,6 +14,8 @@
 <a href="https://www.figma.com/file/lYPenodUeKBqBn0nFHs6Ch/Untitled?type=design&node-id=0-1&mode=design">디자인 Figma 이동 링크</a>
 </p>
 
+***!중요! 여러 해상도 지원을 위해 `px` 대신 `em`, `rem` 단위를 사용해주세요!!***
+
 ### 설정
 레포 clone 후
 ```shell
