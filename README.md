@@ -23,6 +23,13 @@ pnpm install
 pnpm run dev -- --open
 ```
 
+혹은
+```shell
+yarn install
+yarn run dev -- --open
+```
+* npm 사용해도 문제는 없지만, 속도가 매우 느리니 권장하지 않습니다
+
 ### 수정
 주요 Svelte 파일들은 `src/routes` 폴더 아래, Stylesheet 은 `static/styles` 아래 위치
 + 레이아웃 파일 : `src/routes`
