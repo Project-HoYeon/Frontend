@@ -1,9 +1,9 @@
 <script>
 
-    export let showPassword = false;
-    /**
-     * @type HTMLFormElement
-     */
+    import "./styles.scss";
+
+    let showPassword = false;
+    /** @type HTMLFormElement */
     let form;
 
     function togglePWVisibility() {
