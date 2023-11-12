@@ -9,7 +9,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #C5C9DB;
+  background-color: #efefef;
 }
 
 button {
@@ -22,132 +22,6 @@ button {
 }
 button:hover {
   background: #80a5ff;
-}
-
-#sidebar {
-  position: absolute;
-  width: 20rem;
-  height: 100%;
-  background-color: white;
-  padding: 0 2.5rem;
-}
-
-#profile-info {
-  align-content: center;
-  text-align: center;
-  margin-top: 5rem;
-}
-#profile-info img {
-  width: 5.5rem;
-  height: 5.5rem;
-  flex-shrink: 0;
-  border-radius: 1.625rem;
-  border: 4px solid #6692FF;
-}
-#profile-info .stdnumber {
-  color: #666;
-  text-align: center;
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-}
-#profile-info .name {
-  color: #000;
-  text-align: center;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-#profile-buttons {
-  display: inline-flex;
-  align-items: stretch;
-  gap: 0.7rem;
-  width: 20rem;
-  margin-top: 3rem;
-}
-#profile-buttons button {
-  border-radius: 16px;
-  padding: 1rem 1rem;
-  flex: 1;
-  text-align: start;
-  font-size: 1rem;
-}
-#profile-buttons button:nth-child(1) {
-  border: 3px solid rgba(75, 123, 242, 0.08);
-  background: #E0E6F5;
-  color: black;
-}
-#profile-buttons button:nth-child(1):hover {
-  background: #d2dced;
-}
-#profile-buttons button:nth-child(1) i {
-  color: #828282;
-}
-
-#timetable .card {
-  border-radius: 25px;
-  background: #E0E6F5;
-  width: 20rem;
-  margin-top: 2rem;
-  text-align: center;
-}
-#timetable .card hr {
-  display: block;
-  width: 20px;
-  height: 4px;
-  border-width: 0;
-  top: 24px;
-  margin-left: 30px;
-  background: #96AFED;
-}
-#timetable .card p {
-  margin-top: 4px;
-  margin-bottom: 1rem;
-  margin-left: 30px;
-  text-align: start;
-  color: #000;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-#timetable .card img {
-  width: 18rem;
-  border-radius: 25px;
-  margin-bottom: 1rem;
-}
-#timetable #next-class {
-  margin-top: 1.5rem;
-  padding: 16px;
-  border-radius: 25px;
-  background: #E0E6F5;
-  max-width: 20rem;
-  display: flex;
-  text-align: start;
-}
-#timetable #next-class i {
-  font-size: 22px;
-  margin: auto 6px;
-}
-#timetable #next-class div {
-  margin-left: 10px;
-}
-#timetable #next-class div p#class-name {
-  color: #252525;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-#timetable #next-class div p#class-time {
-  color: #565656;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 
 /*# sourceMappingURL=index.css.map */
