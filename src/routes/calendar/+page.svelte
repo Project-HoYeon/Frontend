@@ -6,6 +6,24 @@
 
     
     const data = [
+      
+        {
+            date : "2023-02-06 ~ 2023-02-10",
+            context : "1학기 수강신청 기간"
+        },
+        {
+            date : "2023-02-13 ~ 2023-02-17",
+            context :"1학기 등록 및 일반휴학 접수 기간",
+
+        },
+        {
+            date : "2023-02-27 ~ 2023-02-27",
+            context : "신입생 수강신청"
+        },
+        {
+            date : "2023-02-27 ~ 2023-02-27",
+            context : "2023학년도 1학기 개강"
+        },
         {
             date : "2023-06-01 ~ 2023-06-29",
             context : "성적입력 기간"
@@ -264,7 +282,7 @@ function showMore() {
         <div class="calendar">
             <div class="calendar-grid">
                 {#each calendarDays as item}
-                    <div class="calendar-day" style ="background-color : {item.check ? "#007bff;" : "#f9f9f9"};" >{item.day}</div>
+                    <div class="calendar-day" style ="background-color : {item.check ? "#007bff;" : ""};" >{item.day}</div>
                 {/each}
             </div>
         </div>
@@ -286,42 +304,41 @@ function showMore() {
 
 <style>
     section {
-    position : absolute;
+    position: absolute;
     display: flex;
     align-items: start;
     justify-content: center;
     box-sizing: border-box;
     width: 100%;
-    height : 100%;
+    height: 100%;
     background-color: #f5f5f5;
-    padding: 20px;
+    padding: 1.25rem; 
 }
 
 .left-container, .right-container {
-    display : flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
-    margin: 40px;
+    margin: 2.5rem; 
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+    padding: 1.25rem; 
+    border-radius: 0.625rem; 
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
 }
 
 .main_title {
-    font-size: 2.5rem;
+    font-size: 2.5rem; 
     color: #333;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; 
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 0.625rem; 
+    margin-bottom: 1.25rem; 
 }
 
 .year-display, .month-display {
@@ -338,40 +355,38 @@ function showMore() {
     font-size: 2rem;
     background-color: white;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem; 
 }
 
 .date {
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
     font-weight: bold;
     margin: 0.5rem;
 }
 
 .calendar {
-    max-width: 350px;
+    max-width: 21.875rem;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    border-radius: 0.625rem; 
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
+    padding: 1.25rem;
     text-align: center;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 0.3125rem;
 }
 
 .calendar-day {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 0.625rem;
+    border-radius: 0.3125rem; 
     background-color: #f9f9f9;
     color: #333;
     font-weight: bold;
     transition: background-color 0.2s ease-in-out;
 }
-
-
 
 ul {
     list-style: none;
@@ -380,10 +395,10 @@ ul {
 
 li {
     background-color: #fff;
-    margin-bottom: 0.5rem;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.3125rem; 
+    padding: 0.75rem; 
+    border-radius: 0.5rem; 
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); 
     transition: background-color 0.2s;
 }
 
@@ -393,17 +408,17 @@ li:hover {
 
 li strong {
     color: #007bff;
-    margin-right: 0.5rem;
+    margin-right: 0.5rem; 
 }
 
 .show-more {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 0.5rem 1rem; 
+    font-size: 1rem; 
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 0.3rem;
-    margin-top: 0.5rem;
+    border-radius: 0.3rem; 
+    margin-top: 0.5rem; 
     cursor: pointer;
     transition: background-color 0.2s;
 }
