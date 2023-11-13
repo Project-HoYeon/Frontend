@@ -253,7 +253,13 @@
         updateSchedule();
     }
 
-    function updateSchedule() {
+    /**
+     *
+     * @param {boolean} [resetVisible]
+     */
+    function updateSchedule(resetVisible) {
+        if (resetVisible)
+            nowVisible = maxVisible;
         schedules = getSchedulesOf(year, month);
         calendarDates = generateCalendarDays(year, month);
         visibleSchedules = schedules.slice(0, nowVisible);
@@ -261,6 +267,7 @@
 
     function showMore() {
         nowVisible = schedules.length;
+        updateSchedule(false);
     }
 
     updateSchedule();
