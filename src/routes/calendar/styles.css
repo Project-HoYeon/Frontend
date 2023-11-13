@@ -1,0 +1,114 @@
+section {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  padding: 1.25rem;
+}
+section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  margin: 2.5rem;
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+section .container .controls {
+  display: flex;
+  justify-content: center;
+  padding: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+section .container .controls .year-display, section .container .controls .month-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+section .container .controls .year-display .arrow, section .container .controls .month-display .arrow {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+}
+section .container .controls .year-display .date, section .container .controls .month-display .date {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+section .container .calendar {
+  max-width: 21.875rem;
+  background-color: #fff;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  text-align: center;
+}
+section .container .calendar .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3125rem;
+}
+section .container .calendar .calendar-grid .calendar-day {
+  padding: 0.625rem;
+  border-radius: 0.3125rem;
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+section .container .calendar .calendar-grid .highlighted {
+  background-color: #007bff !important;
+  color: white !important;
+}
+section .container .main-title {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+section .container ul {
+  list-style: none;
+  margin-top: 1rem;
+}
+section .container ul li {
+  background-color: #fff;
+  margin-bottom: 0.3125rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+section .container ul li:hover {
+  background-color: #e9ecef;
+}
+section .container ul li strong {
+  color: #007bff;
+  margin-right: 0.5rem;
+}
+section .container .show-more {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.3rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+section .container .show-more:hover {
+  background-color: #0056b3;
+}
+
+/*# sourceMappingURL=styles.css.map */
