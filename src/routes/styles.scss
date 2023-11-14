@@ -18,6 +18,27 @@ footer {
   }
 }
 
+.svelte-tabs {
+  max-height: 100%;
+
+  ul {
+    padding: 0.5rem 0 !important;
+    display: flex;
+    justify-content: center;
+    border-bottom: none !important;
+  }
+
+  li.svelte-tabs__tab {
+    font-weight: 400;
+    font-size: 1.3rem;
+  }
+
+  div.svelte-tabs__tab-panel {
+    overflow: scroll !important;
+    max-height: 100%;
+  }
+}
+
 .posts-list {
   overflow-y: scroll;
   display: flex;
@@ -121,132 +142,95 @@ footer {
   }
 }
 
-#sidebar {
-  position: absolute;
-  width: 20rem;
-  height: 100%;
-  background-color: white;
-  padding: 0 2.5rem;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-}
-
-#profile-info {
-  align-content: center;
-  text-align: center;
-
-  img {
-    width: 5.5rem;
-    height: 5.5rem;
-    flex-shrink: 0;
-    border-radius: 1.625rem;
-    border: 4px solid #6692FF;
-  }
-
-  .stdnumber {
-    color: #666;
-    text-align: center;
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-  }
-
-  .name {
-    color: #000;
-    text-align: center;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-}
-
-#profile-buttons {
-  display: inline-flex;
-  align-items: stretch;
-  gap: 0.7rem;
-  width: 20rem;
-  margin-top: 2.5rem;
-
-  button {
-    border-radius: 16px;
-    padding: 1rem 1rem;
-    flex: 1;
-    text-align: start;
-    font-size: 1rem;
-  }
-
-  button:nth-child(1) {
-    border: 3px solid rgba(75, 123, 242, 0.08);
-    background: #E0E6F5;
-    color: black;
-
-    &:hover {
-      background: #d2dced;
-    }
-
-    i {
-      color: #828282;
-    }
-  }
-}
-
-#timetable {
-  img {
-    width: 20rem - calc(1rem / 2);
-    border-radius: $corner-radius;
-    border: 4px solid #6D7896;
-    margin-top: 2rem;
-  }
-
-  #next-class {
-    margin-top: 0.5rem;
-    padding: 12px 16px;
-    border-radius: $corner-radius;
-    background: #6D7996;
-    color: white;
-    max-width: 20rem;
-    display: flex;
-    text-align: start;
-
-    i {
-      font-size: 20px;
-      margin: auto 6px;
-    }
-
-    div {
-      margin-left: 10px;
-
-      p#class-name {
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-      }
-
-      p#class-time {
-        color: #FBFBFB;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-    }
-  }
-}
-
 #main {
-  margin-left: 25rem;
-  padding-left: 3rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
 
-  padding-right: 3rem;
-
-  #logo {
-    height: 5rem;
+  header {
     margin-top: 1.5rem;
+    margin-right: 30rem;
+    display: flex;
+    align-items: center;
+
+    #logo {
+      height: 5rem;
+    }
+
+    #user-info {
+      display: flex;
+      align-items: center;
+      border-radius: 1.5625rem;
+      background: linear-gradient(90deg, #FFF 59.27%, rgba(255, 255, 255, 0.30) 100%);
+      height: 5.4rem;
+      margin-left: 1.6rem;
+      flex: 1;
+
+      & > img {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 2.3125rem;
+        border: 2px solid #6692FF;
+        margin-left: 1.5rem;
+      }
+
+      #profile {
+        margin-left: 1rem;
+
+        #username {
+          font-size: 1.4rem;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+        hr {
+          background: #ededed;
+          width: 7rem;
+        }
+
+        #std-id {
+          color: #767676;
+          font-size: 0.875rem;
+          font-style: normal;
+          font-weight: 800;
+          line-height: normal;
+        }
+      }
+
+      #spacer {
+        flex: 1;
+      }
+
+      #btn-info {
+        margin-right: 0.6rem;
+      }
+
+      #btn-logout {
+        display: flex;
+        margin-right: 1.2rem;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        width: 48px;
+
+        i {
+          margin-right: 20px;
+          transition: margin-right 0.3s ease-in-out;
+        }
+
+        span {
+          white-space: nowrap;
+          text-wrap: none;
+        }
+
+        &:hover {
+          width: 7rem;
+
+          i {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
   }
 
   #body-wrapper {
@@ -254,7 +238,7 @@ footer {
     width: auto;
     height: 79vh;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.6rem;
 
     .side-panel {
       position: absolute;
@@ -330,6 +314,8 @@ footer {
           flex-direction: column;
           overflow-y: scroll;
           margin-right: -0.6rem;
+          margin-left: 4px;
+          padding-right: 4px;
         }
 
         .chat-input {
@@ -345,8 +331,8 @@ footer {
             border-radius: 0.6rem;
             border: none;
             background: #FFF;
-            padding-left: 0.5rem;
-            padding-top: 4px;
+            padding-left: 0.8rem;
+            padding-top: 0.6rem;
             font-size: 15px;
             font-weight: normal;
             box-sizing: border-box;

@@ -5,8 +5,24 @@
     import {onMount} from "svelte";
     import {jwtDecode} from "jwt-decode";
     import "./styles.scss";
+    import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+    import Chats from "../components/Chats.svelte";
+    import Schedules from "../components/Schedules.svelte";
 
-    const CHAT_COLORS = ["6692ff", "8e66ff", "ff669d", "42a25d", "D0A2F7", "435585", "427D9D", "B0926A", "739072"];
+    let innerWidth = 0, innerHeight = 0;
+
+    let chatRooms = [
+        {
+            name: "대학본부",
+            lastChat: "코로나관련 연봉 삭감 안내",
+            thumbnail: "assets/logo.svg",
+        },
+        {
+            name: "입학처",
+            lastChat: "앗, 대학원생 타이어보다 싸다!",
+            thumbnail: "assets/logo.svg",
+        },
+    ];
 
     /** @type HTMLTextAreaElement */
     let chatTextArea;
@@ -117,37 +133,31 @@
      * @typedef {{studentID: number, username: string, userID: string, fgp: string}} TokenInfo
      */
 </script>
-<section id="sidebar">
-    <div id="sb-wrapper">
-        <div id="profile-info">
+<svelte:window bind:innerWidth bind:innerHeight/>
+<section id="main">
+    <header>
+        <img id="logo" src="assets/logo_with_text.svg" alt="logo">
+        <div id="user-info">
             <img src="assets/logo.svg" alt="profile">
-            <p class="stdnumber">{studentID}</p>
-            <p class="name">{username}</p>
-        </div>
-        <div id="profile-buttons">
-            <button>
-                <i class="fa-regular fa-bookmark"></i><br>
+            <div id="profile">
+                <p id="username">{username}</p>
+                <hr>
+                <p id="std-id">{studentID}</p>
+            </div>
+            <div id="spacer"></div>
+            <div id="notifications">
+
+            </div>
+            <button id="btn-info" class="button is-outlined">
+                <i class="icon fa-regular fa-bookmark"></i>
                 내 정보
             </button>
-            <button on:click={logout}>
-                <i class="fa-solid fa-right-from-bracket"></i><br>
-                로그아웃
+            <button id="btn-logout" class="button" on:click={logout}>
+                <i class="icon fa-solid fa-right-from-bracket"></i>
+                <span>로그아웃</span>
             </button>
         </div>
-        <div id="timetable">
-            <img src="assets/timetable_dummy.png" alt="timetable">
-            <div id="next-class">
-                <i class="fa-regular fa-clock"></i>
-                <div>
-                    <p id="class-name">웹프로그래밍</p>
-                    <p id="class-time">오늘 10:30 ~ 12:30 | 아)2공 509</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="main">
-    <img id="logo" src="assets/logo_with_text.svg" alt="logo">
+    </header>
     <div id="body-wrapper">
         <div class="body-section" id="community">
             <div class="posts">
@@ -184,7 +194,24 @@
             </div>
         </div>
         <div class="body-section" id="chats">
+            <Tabs>
+                <TabList>
+                    <Tab>내 대화</Tab>
+                    <Tab>시간표</Tab>
+                    <Tab>학사일정</Tab>
+                </TabList>
+                <TabPanel>
+                    <Chats {chatRooms}/>
+                </TabPanel>
 
+                <TabPanel>
+                    <h2>미구현</h2>
+                </TabPanel>
+
+                <TabPanel>
+                    <Schedules/>
+                </TabPanel>
+            </Tabs>
         </div>
     </div>
 

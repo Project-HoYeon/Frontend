@@ -6,15 +6,34 @@ body {
   background-color: #efefef;
 }
 
-button {
-  border-radius: 8px;
-  background: #6692FF;
+.button {
+  border-radius: 0.75rem;
+  background: #2f2f2f;
   border-width: 0;
   color: white;
-  padding: 0.7rem 0.5rem;
+  padding: 0.95rem 1.1rem;
   transition: ease-in 0.1s;
+  font-size: 0.875rem;
+  height: fit-content;
 
   &:hover {
-    background: #80a5ff;
+    background: #4c4c4c;
+  }
+
+  & > .icon {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+
+  &.is-outlined {
+    background: transparent;
+    border: 3px solid #838383;
+    padding: calc(0.95rem - 1.5px) 1.1rem;
+    box-sizing: border-box!important;
+    color: black;
+
+    &:hover {
+      background: #ededed;
+    }
   }
 }
