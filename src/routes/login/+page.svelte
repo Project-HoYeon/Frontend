@@ -44,7 +44,6 @@
                         throw Error(`HttpStatus ${resp.code}: ${resp.message}`);
                 } else {
                     window.sessionStorage.setItem("ACC_TKN", resp.token);
-                    alert("OK");
                     window.location.href = "/";
                 }
             })
