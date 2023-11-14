@@ -4,6 +4,12 @@
   }
 }
 
+@mixin under-height($height-px) {
+  @media (max-height: $height-px) {
+    @content;
+  }
+}
+
 @mixin on-mobile {
   @include under-width(768px) {
     @content;

@@ -124,11 +124,20 @@ section {
       height: 3.6rem;
       margin-top: 1.8rem;
       border-radius: 1.8rem;
-      background: #3B4859;
       font-size: 1.2rem;
+      color: white;
 
-      &:hover {
+      &:not(&:disabled, .is-loading) {
+        background: #3B4859;
+
+        &:hover {
+          background: #586478;
+        }
+      }
+
+      &.is-loading {
         background: #586478;
+        cursor: wait;
       }
 
       i {

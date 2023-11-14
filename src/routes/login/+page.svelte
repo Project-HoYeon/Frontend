@@ -1,5 +1,4 @@
 <script>
-
     import "./styles.scss";
 
     let showPassword = false;
@@ -10,9 +9,14 @@
         showPassword = !showPassword;
     }
 
+    /** @this {HTMLButtonElement} */
     function tryLogin() {
+        const btn = this;
+        if (btn.classList.contains("is-loading"))
+            return;
         const formData = new FormData(form);
 
+        btn.classList.add("is-loading");
         fetch("https://server.mooner.dev/hoyeon/api/v1/auth/login", {
             method: 'POST',
             headers: {
@@ -24,11 +28,11 @@
                 'password': formData.get("password"),
             }),
         })
-            .then(resp => {
+            .then(async resp => {
                 if (!resp.ok)
                     return {
                         code: resp.status,
-                        message: resp.text(),
+                        message: await resp.text(),
                     };
                 return resp.json();
             })
@@ -47,6 +51,9 @@
             .catch(e => {
                 alert("서버와의 통신에 실패했어요. 잠시 후 다시 시도해주세요.");
                 console.error(e);
+            })
+            .finally(() => {
+                btn.classList.remove("is-loading");
             });
     }
 </script>
@@ -70,7 +77,7 @@
                     </div>
                 </div>
                 <button type="button" class="c-pointer" on:click={tryLogin}>
-                    <i class="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;로그인
+                    <span><i class="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;로그인</span>
                 </button>
             </form>
             <div id="reg-wrapper" class="c-pointer">

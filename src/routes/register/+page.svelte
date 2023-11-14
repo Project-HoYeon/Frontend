@@ -13,7 +13,12 @@
         showPassword = !showPassword;
     }
 
+    /** @this {HTMLButtonElement} */
     function tryRegistration() {
+        const btn = this;
+        if (btn.classList.contains("is-loading"))
+            return;
+
         const formData = new FormData(form);
 
         const id       = formData.get("id");
@@ -27,6 +32,7 @@
             return;
         }
 
+        btn.classList.add("is-loading");
         fetch("https://server.mooner.dev/hoyeon/api/v1/auth/register", {
             method: 'POST',
             headers: {
@@ -55,6 +61,9 @@
                     case 409:
                         alert("이미 이 학번으로 가입된 계정이 있어요.");
                         break;
+                    case 401:
+                        alert("아직 이메일 인증이 완료되지 않았어요.");
+                        break;
                     case 500:
                         alert("알 수 없는 오류가 발생했어요. 잠시 후에 다시 시도해주세요.");
                         break;
@@ -69,6 +78,9 @@
                         console.log(resp);
                 }
             })
+            .finally(() => {
+                btn.classList.remove("is-loading");
+            });
     }
 </script>
 <div class="wrapper">
@@ -106,7 +118,7 @@
                         <input name="username" type="text" inputmode="numeric" maxlength="12" placeholder="기타치는 독수리"/>
                     </div>
                     <button type="button" class="c-pointer" on:click={tryRegistration}>
-                        <i class="fa-solid fa-check"></i>&nbsp;&nbsp;회원가입
+                        <span><i class="fa-solid fa-check"></i>&nbsp;&nbsp;회원가입</span>
                     </button>
                 </form>
             </div>
