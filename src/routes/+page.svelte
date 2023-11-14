@@ -1,6 +1,5 @@
 <script>
 
-    //import CollapsibleCard from "../components/CollapsibleCard.svelte";
     import autosize from "autosize";
     import {onMount} from "svelte";
     import {jwtDecode} from "jwt-decode";
