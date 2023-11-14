@@ -11,6 +11,12 @@ dependencies:
   autosize:
     specifier: ^6.0.1
     version: 6.0.1
+  bulma:
+    specifier: ^0.9.4
+    version: 0.9.4
+  cupertino-pane:
+    specifier: ^1.4.2
+    version: 1.4.2
   jwt-decode:
     specifier: ^4.0.0
     version: 4.0.0
@@ -455,6 +461,10 @@ packages:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
 
+  /bulma@0.9.4:
+    resolution: {integrity: sha512-86FlT5+1GrsgKbPLRRY7cGDg8fsJiP/jzTqXXVqiUZZ2aZT8uemEOHlU1CDU+TxklPEZ11HZNNWclRBBecP4CQ==}
+    dev: false
+
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
@@ -500,6 +510,10 @@ packages:
       mdn-data: 2.0.30
       source-map-js: 1.0.2
     dev: true
+
+  /cupertino-pane@1.4.2:
+    resolution: {integrity: sha512-veeC2DsWvan2JYDkf4sa81KWY4LljJHbPyrSMV67B+z1JC+kba9oQ41nZyENSxLn4/DEDeUnr9gwEVK/SE2DkQ==}
+    dev: false
 
   /debug@4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
