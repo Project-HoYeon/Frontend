@@ -1,6 +1,4 @@
 <script>
-    import "./styles.scss";
-
     /** @type Schedules */
     const data = [
         {
@@ -305,7 +303,6 @@
         </div>
     </div>
     <div class="container">
-        <h1 class="main-title">학사일정</h1>
         <ul>
             {#if visibleSchedules === undefined}
                 <p>로드중...</p>
@@ -320,3 +317,123 @@
         </ul>
     </div>
 </section>
+<style lang="scss">
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    height: 100%;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      border-radius: 0.625rem;
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        padding: 0.625rem;
+
+        .year-display, .month-display {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .arrow {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            background-color: white;
+            border: none;
+            border-radius: 0.5rem;
+          }
+
+          .date {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem;
+          }
+        }
+      }
+
+      .calendar {
+        max-width: 21.875rem;
+        border-radius: 0.625rem;
+        text-align: center;
+
+        .calendar-grid {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 0.3125rem;
+
+          .calendar-day {
+            padding: 0.625rem;
+            border-radius: 0.3125rem;
+            background-color: #f9f9f9;
+            color: #333;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+          }
+
+          .highlighted {
+            background-color: #007bff!important;
+            color: white!important;
+          }
+        }
+      }
+
+      .main-title {
+        font-size: 1.5rem;
+        color: #333;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+
+        li {
+          max-width: 22rem;
+          background-color: #f3f3f3;
+          margin-bottom: 0.3125rem;
+          padding: 0.75rem;
+          border-radius: 0.5rem;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #e9ecef;
+          }
+
+          strong {
+            color: #007bff;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      .show-more {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.3rem;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+</style>
