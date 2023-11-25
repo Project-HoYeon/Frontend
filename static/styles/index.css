@@ -53,7 +53,7 @@ button.is-loading::after {
 body {
   margin: 0;
   padding: 0;
-  background-color: #efefef;
+  background-color: white;
 }
 
 .button {

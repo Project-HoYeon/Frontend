@@ -349,7 +349,7 @@
             justify-content: center;
             align-items: center;
             font-size: 2rem;
-            background-color: white;
+            background-color: transparent;
             border: none;
             border-radius: 0.5rem;
           }
@@ -375,7 +375,7 @@
           .calendar-day {
             padding: 0.625rem;
             border-radius: 0.3125rem;
-            background-color: #f9f9f9;
+            background-color: #ffffff;
             color: #333;
             font-weight: bold;
             transition: background-color 0.2s ease-in-out;
@@ -401,15 +401,15 @@
         flex-direction: column;
 
         li {
-          max-width: 22rem;
-          background-color: #f3f3f3;
+          max-width: 20rem;
+          background-color: #ffffff;
           margin-bottom: 0.3125rem;
           padding: 0.75rem;
           border-radius: 0.5rem;
           transition: background-color 0.2s;
 
           &:hover {
-            background-color: #e9ecef;
+            background-color: #f4f4f4;
           }
 
           strong {
