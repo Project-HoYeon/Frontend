@@ -1,14 +1,18 @@
 <script>
-
     import autosize from "autosize";
-    import {onMount} from "svelte";
+    import {afterUpdate, onMount} from "svelte";
     import {jwtDecode} from "jwt-decode";
-    import "./styles.scss";
     import { Tabs, Tab, TabList, TabPanel } from 'svelte-tabs';
+    import {CupertinoPane} from "cupertino-pane";
     import Chats from "../components/Chats.svelte";
     import Schedules from "../components/Schedules.svelte";
+    import "./styles.scss";
+    import Timetable from "../components/Timetable.svelte";
 
-    let innerWidth = 0, innerHeight = 0;
+    const HTTP_ENDPOINT = "https://server.mooner.dev";
+    const WS_ENDPOINT   = "wss://server.mooner.dev";
+    //const HTTP_ENDPOINT = "http://localhost:8883";
+    //const WS_ENDPOINT   = "ws://localhost:8883";
 
     let chatRooms = [
         {
@@ -25,31 +29,24 @@
 
     /** @type HTMLTextAreaElement */
     let chatTextArea;
+    /** @type HTMLElement */
+    let chatListElement;
     /** @type TokenInfo */
     let tokenInfo;
     /** @type number */
     let studentID = 20221000;
-    /** @type string|undefined */
+    /** @type {string|undefined} */
     let username = "로드중";
+    /** @type {WSHandler|null} */
+    let chatSocket = null;
+
+    /** @type {{id: number, name: string}|null} */
+    let chatInfo = null;
 
     /** @type Posts */
     let posts = [];
-    /** @type Chats */
+    /** @type ChatList */
     let chats = [];
-    for (let i = 97; i < 123; ++i)
-        chats.push({
-            name: String.fromCharCode(i),
-            message: String.fromCharCode(i),
-            timestamp: Date.now(),
-            isSelf: false,
-        });
-
-    chats.push({
-        name: "멋쟁이 고라니 (80)",
-        message: "무루무루!!",
-        timestamp: Date.now(),
-        isSelf: true,
-    });
 
     onMount(() => {
         const token = window.sessionStorage.getItem("ACC_TKN");
@@ -64,6 +61,15 @@
 
         autosize(chatTextArea);
         fetchPosts(token);
+        fetchPrevChats(token)
+            .then(() => {
+                connectSocket(token);
+            });
+    });
+
+    afterUpdate(() => {
+        console.log("afterUpdate");
+        if(chats) scrollToBottom(chatListElement);
     });
 
     /**
@@ -72,7 +78,7 @@
      * @returns Promise
      */
     function fetchPosts(token) {
-        fetch("https://server.mooner.dev/hoyeon/api/v1/posts?from=0&limit=20", {
+        fetch(`${HTTP_ENDPOINT}/hoyeon/api/v1/posts?from=0&limit=20`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -103,6 +109,130 @@
             });
     }
 
+    /**
+     * Fetch previous chats from server
+     * @param {string} token
+     * @returns Promise
+     */
+    function fetchPrevChats(token) {
+        return fetch(`${HTTP_ENDPOINT}/hoyeon/api/v1/chat`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(async resp => {
+                if (!resp.ok)
+                    return {
+                        code: resp.status,
+                        message: await resp.text(),
+                    };
+                return resp.json();
+            })
+            .then(resp => {
+                if (!Array.isArray(resp) && resp.code) {
+                    if (resp.code === 401) { // Unauthorized
+                        alert("인증 정보가 만료되었습니다. 다시 로그인 해주세요.");
+                        goToLogin();
+                    } else
+                        throw Error(`HttpStatus ${resp.code}: ${resp.message}`);
+                } else {
+                    return resp;
+                }
+            })
+            .then(data => {
+                chats = data.map(chat => {
+                    return {
+                        name: `${chat.sender.name}(${chat.sender.id})`,
+                        message: chat.content,
+                        timestamp: chat.ts,
+                        isSelf: false
+                    }
+                });
+            });
+    }
+
+    function connectSocket(token) {
+        const handler = new WSHandler(`${WS_ENDPOINT}/hoyeon/api/v1/chat/global`, token, tokenInfo.userID);
+        handler.onPacket((packet) => {
+            switch (packet.type) {
+                case "conn_info":
+                    chatInfo = packet.user;
+                    let nName = `${chatInfo.name}(${chatInfo.id})`;
+                    for (let chat of chats)
+                        if (chat.name === nName)
+                            chat.isSelf = true;
+                    chats = chats;
+                    break;
+                case "chat_recv":
+                    pushChat({
+                        name: `${packet.chat.sender.name}(${packet.chat.sender.id})`,
+                        message: packet.chat.content,
+                        timestamp: packet.chat.ts,
+                        isSelf: false
+                    });
+                    break;
+                case "user_join":
+                    pushChat({
+                        name: "무루",
+                        message: "유저 들어옴: " + packet.user.name,
+                        timestamp: packet.ts,
+                        isSelf: false
+                    });
+            }
+        });
+        chatSocket = handler;
+    }
+
+    /** @param {string} content */
+    function sendChat(content) {
+        if (!chatSocket)
+            return;
+        chatSocket.sendPacket({
+            type: "chat_sent",
+            chat: {
+                type: "sc",
+                content: content,
+            },
+        });
+        pushChat({
+            name: `${chatInfo.name}(${chatInfo.id})`,
+            message: content,
+            timestamp: Date.now(),
+            isSelf: true,
+        });
+    }
+
+    function showNewPostDialog() {
+        const myPane = new CupertinoPane(
+            '.new-post-panel', // Pane container selector
+            {
+                parentElement: 'body', // Parent container
+                backdrop: true,
+                showDraggable: false,
+                breaks: {
+                    middle: { enabled: true, height: 700 },
+                    bottom: { enabled: true, height: 700 },
+                },
+                events: {
+                    onDrag: () => console.log('Drag event')
+                }
+            }
+        );
+        myPane.present({animate: true});
+    }
+
+    /** @param {Chat} chat */
+    function pushChat(chat) {
+        chats.push(chat);
+        chats = chats;
+    }
+
+    async function scrollToBottom(node) {
+        node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+    }
+
     function goToLogin() {
         window.location.href = '/login';
     }
@@ -120,19 +250,67 @@
         return date.getHours().toString().padStart(2, "0") + ":" + date.getMinutes().toString().padStart(2, "0");
     }
 
+    class WSHandler {
+        /** @type {WebSocket} */
+        #socket;
+        /** @type {((packet: Packet) => {})|null} */
+        #onPacketCallback = null;
+
+        /**
+         * @param {string} addr
+         * @param {string} token
+         * @param {string} userId
+         */
+        constructor(addr, token, userId) {
+            this.#socket = new WebSocket(addr + "?token=" + encodeURIComponent(token) + "&userId=" + userId);
+
+            // @ts-ignore
+            this.#socket.onmessage = function (event) {
+                console.log(event.data);
+                let packet = JSON.parse(event.data);
+                if (!packet.type || !this.#onPacketCallback)
+                    return;
+
+                this.#onPacketCallback(packet);
+            }.bind(this);
+            this.#socket.onopen = function () {
+                this.send(JSON.stringify({
+                    "type": "hello",
+                    "userID": userId
+                }));
+            }
+        }
+
+        /** @param {(packet: Packet) => any} callback */
+        onPacket(callback) {
+            this.#onPacketCallback = callback;
+        }
+
+        /** @param {Packet} packet */
+        sendPacket(packet) {
+            if (!this.#socket || this.#socket.readyState !== WebSocket.OPEN)
+                return;
+
+            packet.ts = Date.now();
+
+            this.#socket.send(JSON.stringify(packet));
+        }
+    }
+
     /**
      * @typedef {Post[]} Posts
      *
      * @typedef {{id: number, title: string, content: string, isAnonymous: boolean, writtenAt: number}} Post
      *
-     * @typedef {Chat[]} Chats
+     * @typedef {Chat[]} ChatList
      *
      * @typedef {{name: string, message: string, timestamp: number, isSelf: boolean}} Chat
      *
      * @typedef {{studentID: number, username: string, userID: string, fgp: string}} TokenInfo
+     *
+     * @typedef {Object<string, any>} Packet
      */
 </script>
-<svelte:window bind:innerWidth bind:innerHeight/>
 <section id="main">
     <header>
         <img id="logo" src="assets/logo_with_text.svg" alt="logo">
@@ -160,11 +338,20 @@
     <div id="body-wrapper">
         <div class="body-section" id="community">
             <div class="posts">
-                <hr>
-                <p>
-                    <i class="fa-regular fa-message"></i>
-                    커뮤니티
-                </p>
+                <div class="header">
+                    <div>
+                        <hr>
+                        <p>
+                            <i class="fa-regular fa-message"></i>
+                            커뮤니티
+                        </p>
+                    </div>
+                    <div class="spacer"></div>
+                    <button class="button" on:click={showNewPostDialog}>
+                        <i class="fa-solid fa-pen"></i>&nbsp;&nbsp;
+                        새 글 쓰기
+                    </button>
+                </div>
                 <div class="posts-list">
                     {#each posts as post}
                         <div style="display: flex">
@@ -178,7 +365,7 @@
                 </div>
             </div>
             <div class="live-chat">
-                <div class="chat-list">
+                <div class="chat-list" bind:this={chatListElement}>
                     {#each chats as chat}
                         <div class="chat-wrapper" class:chat-self={chat.isSelf}>
                             <p class="chat-content" class:chat-self={chat.isSelf}>{chat.message}</p>
@@ -187,8 +374,12 @@
                     {/each}
                 </div>
                 <div class="chat-input">
-                    <textarea bind:this={chatTextArea} placeholder="멋쟁이 고라니 (80) (으)로 전송됩니다..."/>
-                    <button><i class="fa-solid fa-paper-plane"></i></button>
+                    {#if !chatInfo}
+                        <textarea bind:this={chatTextArea} placeholder="채팅 서버 접속중..." disabled/>
+                    {:else}
+                        <textarea bind:this={chatTextArea} placeholder="{chatInfo.name}({chatInfo.id}) (으)로 전송됩니다..."/>
+                    {/if}
+                    <button on:click={() => {sendChat(chatTextArea.value); chatTextArea.value = ''}}><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
@@ -204,7 +395,7 @@
                 </TabPanel>
 
                 <TabPanel>
-                    <h2>미구현</h2>
+                    <Timetable/>
                 </TabPanel>
 
                 <TabPanel>
@@ -218,3 +409,17 @@
         Project-HoYeon by <a href="https://github.com/Project-HoYeon">Team-HoYeon</a> with ❤ and ☕
     </footer>
 </section>
+<div class="new-post-panel">
+    <h2>새 게시글 작성</h2>
+    <hr>
+    <form>
+        <input name="title" type="text" placeholder="대충 이곳에 제목 입력">
+        <textarea name="content" placeholder="대충 이곳에 내용 입력"/>
+        <div class="switch-wrapper">
+            <input name="isAnonymous" type="checkbox" class="switch">
+            <label for="switch" class="switch-label">
+                <span class="onf-btn"></span>
+            </label>
+        </div>
+    </form>
+</div>
