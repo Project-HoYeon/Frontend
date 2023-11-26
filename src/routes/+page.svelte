@@ -389,7 +389,7 @@
     }
 
     function goToLogin() {
-        window.location.href = '/login';
+        window.location.href = '/hoyeon/login';
     }
 
     function logout() {
@@ -489,7 +489,7 @@
             <div id="notifications">
 
             </div>
-            <button on:click={() => { window.location.href = "/profile"; }} id="btn-info" class="button is-outlined">
+            <button on:click={() => { window.location.href = "/hoyeon/profile"; }} id="btn-info" class="button is-outlined">
                 <i class="icon fa-regular fa-bookmark"></i>
                 내 정보
             </button>

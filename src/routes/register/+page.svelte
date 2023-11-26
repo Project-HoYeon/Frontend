@@ -6,7 +6,7 @@
     let form;
 
     function moveToLogin() {
-        window.location.href = "/login";
+        window.location.href = "/hoyeon/login";
     }
 
     function togglePWVisibility() {
@@ -72,7 +72,7 @@
                         break;
                     case 200:
                         alert("가입 완료");
-                        window.location.href = "/login";
+                        window.location.href = "/hoyeon/login";
                         break;
                     default:
                         console.log(resp);

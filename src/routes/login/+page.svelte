@@ -44,7 +44,7 @@
                         throw Error(`HttpStatus ${resp.code}: ${resp.message}`);
                 } else {
                     window.sessionStorage.setItem("ACC_TKN", resp.token);
-                    window.location.href = "/";
+                    window.location.href = "/hoyeon";
                 }
             })
             .catch(e => {
@@ -80,7 +80,7 @@
                 </button>
             </form>
             <div id="reg-wrapper" class="c-pointer">
-                <hr><span on:click={()=>{ window.location.href = "/register" }}>회원가입</span><hr>
+                <hr><span on:click={()=>{ window.location.href = "/hoyeon/register" }}>회원가입</span><hr>
             </div>
             <div id="forgot-pw-wrapper" class="c-pointer">
                 <a>비번을 몰?루</a>
