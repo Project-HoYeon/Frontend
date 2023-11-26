@@ -65,6 +65,7 @@ body {
   transition: ease-in 0.1s;
   font-size: 0.875rem;
   height: fit-content;
+  cursor: pointer;
 }
 .button:hover {
   background: #4c4c4c;

@@ -23,9 +23,14 @@
 	"type": "module",
 	"dependencies": {
 		"@types/autosize": "^4.0.3",
+		"@types/dompurify": "^3.0.5",
 		"autosize": "^6.0.1",
 		"cupertino-pane": "^1.4.2",
+		"dompurify": "^3.0.6",
 		"jwt-decode": "^4.0.0",
+		"marked": "^10.0.0",
+		"moment": "^2.29.4",
+		"prismjs": "^1.29.0",
 		"sass": "^1.69.5"
 	}
 }

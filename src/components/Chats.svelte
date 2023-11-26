@@ -36,9 +36,12 @@
 
     img {
       border-radius: 0.625rem;
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3.2rem;
+      height: 3.2rem;
       flex-shrink: 0;
+      margin-right: 0.6rem;
+      border: solid 2px #ededed;
+      box-sizing: border-box;
     }
 
     .room-name {
